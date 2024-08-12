@@ -2,7 +2,7 @@
 
 ![dev's roadmap](/static/roadmap.png 'to do roadmap')
 
-this is another simple chatbot made with the llama3.1 model. a very simple, easy-to-navigate UI, with a lot of plans for expansion for future projects.
+this is another simple chatbot made with the llama3.1 model. a very simple, easy-to-navigate UI, with a lot of plans for expansion for future projects. check out the demo website live now [here!](https://hs-chatbot.vercel.app)
 
 ## TODO
 
