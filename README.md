@@ -1,38 +1,11 @@
-# create-svelte
+# rag chatbot
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+![dev's roadmap](/static/roadmap.png 'to do roadmap')
 
-## Creating a project
+this is another simple chatbot made with the llama3.1 model. a very simple, easy-to-navigate UI, with a lot of plans for expansion for future projects.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## TODO
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- deploy this to EC2 (because I am not in the US at the time of commit, I am unable to verify my number for EC2 publishing)
+- integrate some sort of backend instead of relying on Svelte API routes
+- have Postgres and Pinecone for fetching and routing
