@@ -10,6 +10,7 @@
 	import DOMPurify from 'isomorphic-dompurify';
 
 	let accumulated = '';
+	let inProgress = false;
 
 	const parser = createParser((event) => {
 		if (event.type === 'message') {
@@ -34,6 +35,7 @@
 	});
 
 	async function streamResponse(messagesHistory) {
+		inProgress = true;
 		const response = await fetch('/api/chat', {
 			method: 'POST',
 			headers: {
@@ -44,6 +46,7 @@
 
 		if (!response.body) {
 			console.error('ReadableStream not yet supported in this browser');
+			inProgress = false;
 			return;
 		}
 
@@ -64,6 +67,8 @@
 				messages = [...messages, { role: 'assistant', content: accumulated }];
 			}
 		}
+
+		inProgress = false;
 	}
 
 	let div;
@@ -126,8 +131,8 @@
 	}
 
 	const parseMarkdown = (text) => {
-		DOMPurify.sanitize(marked.parse(text));
-		return text;
+		const html = DOMPurify.sanitize(marked.parse(text));
+		return html;
 	};
 </script>
 
@@ -140,7 +145,7 @@
 			<h2
 				class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
 			>
-				my chat
+				headstarter chat
 			</h2>
 		</header>
 
@@ -149,7 +154,7 @@
 				class={`my-2 ${message.role == 'user' ? 'text-right' : message.role == 'system' ? 'hidden' : ''}`}
 			>
 				<span
-					class={`inline-block max-w-xs break-words py-2 px-4 rounded-lg ${
+					class={`inline-block max-w-lg break-words py-2 px-4 rounded-lg ${
 						message.role === 'user'
 							? 'bg-blue-500 text-white rounded-br-none'
 							: 'bg-stone-100 text-black rounded-bl-none'
@@ -166,6 +171,7 @@
 			class="w-fulls border rounded-lg p-2 resize-none focus:border-stone-500 focus:outline-none text-base max-h-40 overflow-x-hidden"
 			bind:value={currentInput}
 			id="autoExpand"
+			disabled={inProgress}
 		/>
 	</div>
 </div>

@@ -16,7 +16,7 @@ export const POST = async ({ request }) => {
 				model: 'meta-llama/llama-3.1-8b-instruct:free',
 				messages: messagesRemovedPlaceholder,
 				stream: true, // Enable streaming
-				max_tokens: 200,
+				// max_tokens: 200,
 			}),
 		}
 	);
